@@ -9,6 +9,9 @@ alertaForm.addEventListener("submit", (e) => {
 
   const nombre = alertaInput.value;
 
+// Guardar el nombre en el Local Storage
+    localStorage.setItem("nombreUsuario", nombre);
+
 // Se condiciona al usuario a ingresar solo un String, no permitiendole ingresar numeros ni caracteres especiales
 
   const regex = /^[a-zA-Z\s]*$/; 
@@ -19,6 +22,7 @@ alertaForm.addEventListener("submit", (e) => {
 
   const mensaje = `Te damos la bienvenida a la app, ${nombre}!`;
   alert(mensaje);
+  
 
 // Se resetea el formulario para que se borre lo tipeado
 
@@ -67,7 +71,7 @@ compradoForm.addEventListener("submit", agregarComprasRealizadas);
 
 
 
-// Creamos la funcion para poder agregar elementos a la lista
+// Creamos la funcion para poder agregar elementos a la lista y tambien eliminarlos
 
 function agregarItems(e) {
   e.preventDefault();
@@ -75,43 +79,60 @@ function agregarItems(e) {
   if (agregarInput.value !== "") {
     let item = document.createElement("li");
     item.innerText = agregarInput.value;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "Eliminar";
+    deleteButton.id = `btn-${listaCompras.length}`;
+    deleteButton.addEventListener("click", borrarItem);
+    item.appendChild(deleteButton);
+    
     agregar.append(item);
 
     listaCompras.push(agregarInput.value);
     agregarInput.value = "";
     actualizarProductosFaltantes();
   } else {
-    alert("Escribe algo, dejaste un espacio vacío!");
+    alert("Porfavor escribe algo, dejaste un espacio vacío!");
   }
 
   agregarInput.focus();
-  
 }
 
-// Creamos la funcion para agregar elementos a la otra lista
+function borrarItem(e) {
+
+  const buttonId = e.target.id;
+  const itemId = parseInt(buttonId.split("-")[1]);
+
+  listaCompras.splice(itemId, 1);
+  actualizarProductosFaltantes();
+
+  const itemElement = document.getElementById(buttonId).parentElement;
+  itemElement.remove();
+}
+
+
+// Creamos la funcion para agregar elementos a la otra lista utilizando operador ternario
 
 function agregarComprasRealizadas(e) {
   e.preventDefault();
 
-  if (compradoInput.value !== "") {
-    let item = document.createElement("li");
-    item.innerText = compradoInput.value;
-    comprado.append(item);
+  compradoInput.value !== ""
+    ? (function () {
+        let item = document.createElement("li");
+        item.innerText = compradoInput.value;
+        comprado.append(item);
 
-    comprasRealizadas.push(compradoInput.value);
-    compradoInput.value = "";
-    actualizarProductosFaltantes();
-  } else {
-    alert("Escribe algo, dejaste un espacio vacío!");
-  }
+        comprasRealizadas.push(compradoInput.value);
+        compradoInput.value = "";
+        actualizarProductosFaltantes();
+      })()
+    : alert("Porfavor escribe algo, dejaste un espacio vacío!");
 
   compradoInput.focus();
-  
 }
 
 
-
-// Funcion compara ambas listas y devuelve producto faltante
+// Funcion compara ambas listas y devuelve producto faltante utilizando operador ternario
 
 function actualizarProductosFaltantes() {
   const productosFaltantesDiv = document.querySelector("#productos-faltantes");
@@ -121,15 +142,13 @@ function actualizarProductosFaltantes() {
     (item) => !comprasRealizadas.includes(item)
   );
 
-  if (productosFaltantes.length === 0) {
-    productosFaltantesDiv.innerHTML = "No falta comprar ningún producto.";
-  } else {
-    productosFaltantes.forEach((producto) => {
-      const p = document.createElement("p");
-      p.innerText = producto;
-      productosFaltantesDiv.appendChild(p);
-    });
-  }
+  productosFaltantes.length === 0
+    ? (productosFaltantesDiv.innerHTML = "No falta comprar ningún producto.")
+    : productosFaltantes.forEach((producto) => {
+        const p = document.createElement("p");
+        p.innerText = producto;
+        productosFaltantesDiv.appendChild(p);
+      });
 }
 
 // Cargar datos de la lista de compras desde localStorage

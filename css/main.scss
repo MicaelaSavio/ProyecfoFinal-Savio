@@ -183,6 +183,15 @@ html, input, button {
     }
 }
 
+.eliminar-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    /* Agrega más estilos según tus preferencias */
+  }
+
 .btn-group {
     display: flex;
     gap: 1rem;
@@ -200,7 +209,9 @@ html, input, button {
             background-color: #d9a4ad;
         }
     }
+    
 }
+
 
 /****** DARK MODE ******/
 
