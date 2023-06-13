@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu lista de compras</title>
+
+    <!-- Css linkeado -->
     <link rel="stylesheet" href="./css/main.css"">
+
+    <!-- Libreria Animate Style linkeada -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   
 </head>
 <body>
@@ -25,18 +31,18 @@
             <div class="form-group">
                 <ul class="lista">
                     <h4>¿Cual es tu nombre?</h4>
-                    <form action="" id="alerta-form" class="form">
-                        <input type="text" id="alerta-input" class="form-input" placeholder="Escribe tu nombre">
+                    <form id="alerta-form" class="form">
+                        <input type="text" id="alerta-input" class="form-input" placeholder="Ingresa tu nombre" required>
                         <input type="submit" id="alerta-submit" class="form-submit" value="Mostrar">
-                    </form>
+                      </form>
+                      <div id="mensaje-bienvenida"></div>
                 </ul>
                 
                 <ul class="lista" id="agregar">
                     <h4>¿Qué tienes pensado comprar?</h4>
                     <form action="" id="agregar-form" class="form">
                       <input type="text" id="agregar-input" class="form-input" placeholder="Escribe tu lista de compras">
-                      <input type="submit" id="agregar-submit" class="form-submit" value="Agregar">
-                     
+                      <input type="submit" id="agregar-submit" class="form-submit" value="Agregar">   
                     </form>
                 </ul>
                   <ul class="lista" id="comprado">
@@ -50,8 +56,6 @@
       
                   <h2>Productos Faltantes</h2>
                   <div id="productos-faltantes"></div>
-                  
-
 
                   
             </div>
@@ -59,6 +63,10 @@
         </section>
     </main>
     
+<!-- Libreria SWEETALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Js ruteado -->
     <script src="./js/app.js"></script>
 </body>
 </html>

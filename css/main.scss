@@ -16,6 +16,10 @@ html, input, button {
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  }
+
 .container {
     margin: 0 auto;
     max-width: 62.5rem;
@@ -181,16 +185,9 @@ html, input, button {
         }
 
     }
-}
 
-.eliminar-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    /* Agrega más estilos según tus preferencias */
-  }
+   
+}
 
 .btn-group {
     display: flex;
@@ -209,9 +206,9 @@ html, input, button {
             background-color: #d9a4ad;
         }
     }
+
     
 }
-
 
 /****** DARK MODE ******/
 
